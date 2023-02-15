@@ -5,7 +5,7 @@ First, I create a folder for the source files and folders to run Stacks, raw (wh
 ```
 mkdir source_files raw samples raw2 samples2
 cd source_files
-zcat SN_GM_S1_R1_001.fastq.gz | head -n 1000000 > test.fastq
+zcat kakariki_pool_1_S1_R1_001.fastq.gz | head -n 1000000 > test.fastq
 module load FastQC
 fastqc test.fastq # Looks okay
 ```
@@ -13,19 +13,10 @@ fastqc test.fastq # Looks okay
 
 Trimming off adapters and removing reads shorter than 50bp with cutadapt.
 
-### Steven's lane
-```
-cd source_files
-cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_SN_GM_S1_R1_001.fastq   --minimum-length 50:50   -p  trimmed_SN_GM_S1_R2_001.fastq SN_GM_S1_R1_001.fastq.gz  SN_GM_S1_R2_001.fastq.gz
-cd ..
-```
-
-
-### Gracie's lane
 
 ```
 cd source_files
-cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_GK_GM_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_GK_GM_S1_R2_001.fastq GK_GM_S1_R1_001.fastq.gz  GK_GM_S1_R2_001.fastq.gz
+cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_GK_GM_S1_R2_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R2_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz  kakariki_pool_1_S1_R2_001.fastq.gz
 cd ..
 ```
 I had a quick check with fastqc and the data look ok and free of adapters now.
