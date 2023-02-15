@@ -16,7 +16,7 @@ Trimming off adapters and removing reads shorter than 50bp with cutadapt.
 
 ```
 cd source_files
-cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_GK_GM_S1_R2_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R2_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz  kakariki_pool_1_S1_R2_001.fastq.gz
+cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki_pool_1_S1_R2_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R1_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz  kakariki_pool_1_S1_R2_001.fastq.gz
 cd ..
 ```
 I had a quick check with fastqc and the data look ok and free of adapters now.
@@ -24,13 +24,12 @@ I had a quick check with fastqc and the data look ok and free of adapters now.
 ## Demultiplexing
 
 
-###  Steven's lane
 
 Copy trimmed data to raw folder.
 
 ```
 cd raw
-ln -s ../source_files/trimmed_SN* .
+ln -s ../source_files/trimmed_ka* .
 cd ..
 ```
 Run demultiplexing
