@@ -16,7 +16,7 @@ Trimming off adapters and removing reads shorter than 50bp with cutadapt.
 
 ```
 cd source_files
-cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki_pool_1_S1_R2_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R1_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz  kakariki_pool_1_S1_R2_001.fastq.gz
+cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki_pool_1_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R2_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz  kakariki_pool_1_S1_R2_001.fastq.gz
 cd ..
 ```
 I had a quick check with fastqc and the data look ok and free of adapters now.
@@ -38,54 +38,58 @@ Run demultiplexing
 module load Stacks/2.52-gimkl-2020a
 process_radtags -P   -p raw/ -o ./samples/ -b barcodes.txt -e pstI -r -c  --inline-inline # NO -q often used for process-radtags gives me an error because of it, but no worries, cutadapatalready took care of this
  ```
- Good results:
+ Not that good but ok results:
  
  ```
-228528076 total sequences
- 19710844 barcode not found drops (8.6%)
-   105160 low quality read drops (0.0%)
-  2102959 RAD cutsite not found drops (0.9%)
-206609113 retained reads (90.4%)
+Total Sequences 247360172
+Barcode Not Found       40068256        16.2%
+Low Quality     5364236 2.2%
+RAD Cutsite Not Found   2094249 0.8%
+Retained Reads  199833431       80.8%
 ```
-
-### Gracie's lane
-
-Copy trimmed data to raw folder.
+3 samples have no reads:
 
 ```
-mkdir raw2 samples2
-cd raw2
-ln -s ../source_files/trimmed_GK* .
-cd ..
+Norfolk_GPE033_R
+Yellow_CD1887
+Yellow_CD1888
 ```
-Run demultiplexing
-
+### concat all files in one per sample
 
 ```
-module load Stacks # 2.61
-process_radtags -P   -p raw2/ -o ./samples2/ -b barcodes_gracie.txt -e pstI -r -c  --inline-inline # NO -q process-radtags gives me an error because of it, but no worries, cutadapatalready took care of this
- ```
+#python
+import os
+os.mkdir("samples_concat")
+allfiles_to_concat = os.listdir("samples/")
+alltokeep=[]
+with open("popmap.txt") as f:
+	for line in f:
+		print(line)
+		samplename=line.split("\t")[0]
+		#print (samplename)
+		checkfiles=[filename for filename in allfiles_to_concat  if filename.startswith(samplename+".")]
+		if len (checkfiles)!=4: # that was weirdly complicated because some sample name are contained in others different ways, but the vcheck above solve it uysing the rem file
+			print(line)
+			raise Exception
+		else:
+			os.system("zcat "+" ".join(["samples/"+checkfile for checkfile in checkfiles])+"|  gzip -c > samples_concat/"+samplename+".fq.gz" )
+```
 
 
 # Alignment
+First we download the genome from:
+
+[https://www.ncbi.nlm.nih.gov/assembly/GCA_025629965.1/](https://www.ncbi.nlm.nih.gov/assembly/GCA_025629965.1/)
 
 ```
 mkdir alignment
 cd alignment
 
-## Copy in stoneflygenomeassemblyv1.fasta
-
 module load BWA
-bwa index stoneflygenomeassemblyv1.fasta
+bwa index GCA_025629965.1_ASM2562996v1_genomic.fna
 ```
 create a folder with all the samples we need.
 
-```
-mkdir samples_all 
-cd samples_all
-ln -s ../samples/* .
-ln -s samples2/* .
-```
 
 Cleaning the 3'end of short forward and reverse:
 
