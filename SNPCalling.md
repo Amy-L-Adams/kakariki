@@ -54,26 +54,6 @@ Norfolk_GPE033_R
 Yellow_CD1887
 Yellow_CD1888
 ```
-### concat all files in one per sample
-
-```
-#python
-import os
-os.mkdir("samples_concat")
-allfiles_to_concat = os.listdir("samples/")
-alltokeep=[]
-with open("popmap.txt") as f:
-	for line in f:
-		print(line)
-		samplename=line.split("\t")[0]
-		#print (samplename)
-		checkfiles=[filename for filename in allfiles_to_concat  if filename.startswith(samplename+".")]
-		if len (checkfiles)!=4: # that was weirdly complicated because some sample name are contained in others different ways, but the vcheck above solve it uysing the rem file
-			print(line)
-			raise Exception
-		else:
-			os.system("zcat "+" ".join(["samples/"+checkfile for checkfile in checkfiles])+"|  gzip -c > samples_concat/"+samplename+".fq.gz" )
-```
 
 
 # Alignment
@@ -91,14 +71,9 @@ bwa index GCA_025629965.1_ASM2562996v1_genomic.fna
 create a folder with all the samples we need.
 
 
-Cleaning the 3'end of short forward and reverse:
-
-```
-python Clean3pAdapteronShortDemuxReads.py samples_all samples_clean
-```
 
 
-Alignment done with align.sh
+Alignment done with [align.sh](align.sh)
 
 ### SNP Calling
 
