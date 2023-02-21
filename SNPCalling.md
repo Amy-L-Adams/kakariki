@@ -81,6 +81,11 @@ Alignment done with [align.sh](align.sh)
 
 ### SNP Calling
 
+2 norfolk samples have too few reads for refmap and are discarded, creating a popmap.txt without them:
+
+ alignment/Norfolk_GPE031_K.bam
+ alignment/Norfolk_GPE033_R.bam
+
 ```
 #!/bin/sh
  module load Stacks #2.61
@@ -90,7 +95,6 @@ Alignment done with [align.sh](align.sh)
 
 The  popmap can be created using the stacks help online and the barcodes file in this repository metadata. A cleaned popmap without the problematic samples can be found in the metadata folder: [metadata/popmap_clean.txt]( metadata/popmap_clean.txt)
 
-7 samples have too few reads and make Stacks bug:  "Mn_25y"    "Mb_28n"    "Fg_105y"   "Lee2a_13n" "bj_23"     "bj_24"   "jim_19". I tried remapping them, and they did indeed have too few reads after demultiplexing.
 
 I run populations again to obtain a VCF and check for low quality samples.
 
