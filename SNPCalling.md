@@ -57,9 +57,13 @@ Yellow_CD1888
 
 
 # Alignment
+
 First we download the genome from:
 
 [https://www.ncbi.nlm.nih.gov/assembly/GCA_025629965.1/](https://www.ncbi.nlm.nih.gov/assembly/GCA_025629965.1/)
+
+Because the reference genome can introduce ascertainment bias, we will work in two rounds. First, we'll call all the SNPs we can, then mask them in all in the reference genome and re-map and call SNPs to avoid biases.
+
 
 ```
 mkdir alignment
@@ -68,7 +72,7 @@ cd alignment
 module load BWA
 bwa index GCA_025629965.1_ASM2562996v1_genomic.fna
 ```
-create a folder with all the samples we need.
+
 
 
 
@@ -81,7 +85,7 @@ Alignment done with [align.sh](align.sh)
 #!/bin/sh
  module load Stacks #2.61
  mkdir output_refmap
- ref_map.pl --samples alignment --popmap popmap_clean.txt -T 8  -o output_refmap 
+ ref_map.pl --samples alignment --popmap popmap.txt -T 8  -o output_refmap 
 ```
 
 The  popmap can be created using the stacks help online and the barcodes file in this repository metadata. A cleaned popmap without the problematic samples can be found in the metadata folder: [metadata/popmap_clean.txt]( metadata/popmap_clean.txt)
