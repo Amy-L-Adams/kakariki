@@ -81,12 +81,15 @@ Alignment done with [align.sh](align.sh)
 
 ### SNP Calling
 
-2 norfolk samples have too few reads for refmap and are discarded, creating a popmap.txt without them:
-
- alignment/Norfolk_GPE031_K.bam
- alignment/Norfolk_GPE033_R.bam
+2 norfolk and two yellow samples samples have too few reads for refmap and are discarded, creating a popmap.txt without them:
 
 ```
+Norfolk_GPE031_K.bam
+Norfolk_GPE033_R.bam
+Yellow_CD1887
+Yellow_CD1888
+```
+
 #!/bin/sh
  module load Stacks #2.61
  mkdir output_refmap
@@ -99,9 +102,9 @@ The  popmap can be created using the stacks help online and the barcodes file in
 I run populations again to obtain a VCF and check for low quality samples.
 
 ```
-populations -P output_refmap/ -M popmap.txt  --vcf --structure --plink --treemix --max-obs-het 0.65 -R 0.75  -O output_refmap
+populations -P output_refmap/ -M popmap.txt  --vcf --structure --plink --treemix -O output_refmap #no R because we want all possible variants to mask
 ```
-82953 variants remained.
+XXXXX variants remained. !!!!
 
 ```
 module load VCFtools 
