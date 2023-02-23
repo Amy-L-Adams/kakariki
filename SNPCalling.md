@@ -74,9 +74,6 @@ bwa index GCA_025629965.1_ASM2562996v1_genomic.fna
 ```
 
 
-
-
-
 Alignment done with [align.sh](align.sh)
 
 ### SNP Calling
@@ -89,7 +86,7 @@ Norfolk_GPE033_R.bam
 Yellow_CD1887
 Yellow_CD1888
 ```
-
+```
 #!/bin/sh
  module load Stacks #2.61
  mkdir output_refmap
@@ -104,14 +101,31 @@ I run populations again to obtain a VCF and check for low quality samples.
 ```
 populations -P output_refmap/ -M popmap.txt  --vcf --structure --plink --treemix -O output_refmap #no R because we want all possible variants to mask
 ```
-XXXXX variants remained. !!!!
+>2.75 mio SNPs remained
+
+Mask them using bedtools to avoid reference bias before realigning:
 
 ```
-module load VCFtools 
-vcftools --vcf output_refmap/populations.snps.vcf --missing-indv
-``` 
+mkdir alignment_masked_ref
+cd  alignment_masked_ref
+cp ../alignment/GCA*.fna .
 
-The following samples are problematic:
+module load BEDTools
+bedtools maskfasta
+bedtools maskfasta -fi GCA_025629965.1_ASM2562996v1_genomic.fna  -bed ../output_refmap/populations.snps.vcf -fo GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna
+#I used the vcf to check the masked fasta and it does seem to make
+```
+
+GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna is masked
+
+redo the aligment on this one:
+
+```
+module load BWA
+bwa index GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna
+```
+
+The alignment is done with [alignment_masked.sh](alignment_masked.sh) (which is just changing reference genome from  
 
 ```
 Mn_6n	82953	0	65375	0.788097
