@@ -127,29 +127,28 @@ bwa index GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna
 
 The alignment is done with [alignment_masked.sh](alignment_masked.sh) (which is just changing reference genome from  
 
-```
-Mn_6n	82953	0	65375	0.788097
-Gilf48v2y	82953	0	65921	0.794679
-Jim64y	82953	0	80127	0.965933
-Mepass_2y	82953	0	80893	0.975167
-Mim591y	82953	0	80930	0.975613
-Owaka16y	82953	0	81183	0.978663
-bj_18	82953	0	81526	0.982797
-Fg_30n	82953	0	81996	0.988463
-Matai32y	82953	0	82618	0.995962
-Owaka3n	82953	0	82621	0.995998
-Fg_96y	82953	0	82739	0.99742
-```
-Remove them from the popmap. Added to the other samples we now miss 19 samples.
 
 ```
-grep -Ev "^Mn_6n\\s|^Gilf48v2y\\s|^Jim64y\\s|^Mepass_2y\\s|^Mim591y\\s|^Owaka16y\\s|^bj_18\\s|^Fg_30n\\s|^Owaka3n\\s|^Matai32y\\s|^Fg_96y\\s" popmap.txt > popmap_clean.txt```
+```
+ module load Stacks 
+ mkdir output_refmap_masked
+ ref_map.pl --samples alignment_masked_ref --popmap popmap.txt -T 8  -o output_refmap_masked/ 
 ```
 
+Populations without filtering (filtering will be done using vcftools)
 ```
-populations -P output_refmap/ -M popmap_clean.txt  --vcf --structure --plink --treemix --max-obs-het 0.65 -R 0.8  -O output_refmap
+populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/
 ```
 
-78360 variants remained for 221 samples (-R 0.8)
+One individuals with loads of missing data:
+
+```
+Yellow_FT3310   715525  0       708453  0.990116
+```
+I remove it from the popmap and re-run populations without filters:
+
+```
+populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/
+```
 
 The vcf is too big to fit in this repository but it can be found at [this link](https://drive.google.com/file/d/19MqCXvTZwpHR0lUj4HwxERqWKFp9jMRO/view?usp=sharing)
