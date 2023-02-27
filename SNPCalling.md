@@ -151,4 +151,10 @@ I remove it from the popmap and re-run populations without filters:
 populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/
 ```
 
+
+I filter it using:
+
+```
+vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode
+```
 The vcf is too big to fit in this repository but it can be found at [this link](https://drive.google.com/file/d/19MqCXvTZwpHR0lUj4HwxERqWKFp9jMRO/view?usp=sharing)
