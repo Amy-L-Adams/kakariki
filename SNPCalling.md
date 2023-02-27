@@ -128,7 +128,7 @@ bwa index GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna
 The alignment is done with [alignment_masked.sh](alignment_masked.sh) (which is just changing reference genome from  
 
 
-```
+
 ```
  module load Stacks 
  mkdir output_refmap_masked
@@ -157,4 +157,5 @@ I filter it using:
 ```
 vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode
 ```
+
 The vcf is too big to fit in this repository but it can be found at [this link](https://drive.google.com/file/d/19MqCXvTZwpHR0lUj4HwxERqWKFp9jMRO/view?usp=sharing)
