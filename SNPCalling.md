@@ -158,4 +158,7 @@ I filter it using:
 vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode
 ```
 
-The vcf is too big to fit in this repository but it can be found at [this link](https://drive.google.com/file/d/19MqCXvTZwpHR0lUj4HwxERqWKFp9jMRO/view?usp=sharing)
+After filtering, kept 89 out of 89 Individuals
+After filtering, kept 78997 out of a possible 78997 Sites
+Run Time = 1.00 seconds
+
