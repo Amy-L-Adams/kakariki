@@ -1,5 +1,7 @@
 # SNP calling
 
+*From here to alignment, things need to be done in different foldewrs for different runs*
+
 First, I create a folder for the source files and folders to run Stacks, raw (which will contain the trimmed data) and samples. raw2 and samples 2 are for the samples that were on Gracie's lane.
 
 ```
@@ -57,6 +59,8 @@ Yellow_CD1888
 
 
 # Alignment
+
+*This can now be done on any number of run that have been demultiplexed independently but filtered the same way*
 
 First we download the genome from:
 
