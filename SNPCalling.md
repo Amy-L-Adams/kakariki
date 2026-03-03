@@ -9,7 +9,7 @@ mkdir source_files raw samples
 cd source_files
 zcat kakariki_pool_1_S1_R1_001.fastq.gz | head -n 1000000 > test.fastq
 module load FastQC
-fastqc test.fastq # Looks okay
+fastqc test.fastq # Tells you adapter and read length.
 ```
 ## Adapter trimming
 
