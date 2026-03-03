@@ -2,10 +2,10 @@
 
 *From here to alignment, things need to be done in different foldewrs for different runs*
 
-First, I create a folder for the source files and folders to run Stacks, raw (which will contain the trimmed data) and samples. raw2 and samples 2 are for the samples that were on Gracie's lane.
+First, I create a folder for the source files and folders to run Stacks, raw (which will contain the trimmed data) and samples.
 
 ```
-mkdir source_files raw samples raw2 samples2
+mkdir source_files raw samples
 cd source_files
 zcat kakariki_pool_1_S1_R1_001.fastq.gz | head -n 1000000 > test.fastq
 module load FastQC
