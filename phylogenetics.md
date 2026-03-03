@@ -1,8 +1,8 @@
 phylogenetics
 We did a phylogenetic analysis using IQTREE.
 
-First , I convert the SNPs to a phylogenetic input format for IQtree: phylip, using vcf2phylip https://github.com/edgardomortiz/vcf2phylip
-
+First , I convert the SNPs to a phylogenetic input format for IQtree: phylip, using vcf2phylip [https://github.com/edgardomortiz/vcf2phylip
+](https://github.com/edgardomortiz/vcf2phylip/blob/master/vcf2phylip.py)
 ```
 ./vcf2phylip.pl --input output_refmap_masked/out.recode.vcf
 ```
