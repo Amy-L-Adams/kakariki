@@ -97,8 +97,9 @@ Yellow_CD1888
  ref_map.pl --samples alignment --popmap popmap.txt -T 8  -o output_refmap 
 ```
 
-The  popmap can be created using the stacks help online and the barcodes file in this repository metadata. A cleaned popmap without the problematic samples can be found in the metadata folder: [metadata/popmap_clean.txt]( metadata/popmap_clean.txt)
+The  popmap can be created using the stacks help online and the barcodes file in this repository metadata. 
 
+## SNP filtering
 
 I run populations again to obtain a VCF and check for low quality samples.
 
