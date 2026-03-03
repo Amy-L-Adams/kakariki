@@ -186,3 +186,8 @@ First I do  quick check for individuals with LOTS AND LOTS of missing data.
 vcftools --vcf output_refmap_masked/populations.snps.vcf --missing-indv # or indv-missing
 ```
 
+Here I usually rename the file something usefile because it is now out.recode.vcf
+
+```
+mv out.recode.vcf kakarikiXXXindvXXXXSNPsxxxmaxmiss.vcf
+```
