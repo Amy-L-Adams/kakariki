@@ -140,10 +140,21 @@ The alignment is done with [alignment_masked.sh](alignment_masked.sh) (which is 
  ref_map.pl --samples alignment_masked_ref --popmap popmap.txt -T 8  -o output_refmap_masked/ 
 ```
 
-Populations without filtering (filtering will be done using vcftools)
+Populations with low filtering
 ```
-populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/
+populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/ -R 0.2 # remove snps with less than 20% individuals having any info
 ```
+
+## SNP filtering
+
+
+First I do  quick check for individuals with LOTS AND LOTS of missing data.
+
+```
+vcftools --vcf output_refmap_masked/populations.snps.vcf --missing-indv # or indv-missing
+```
+
+the output is the file out.imiss
 
 One individuals with loads of missing data:
 
@@ -160,10 +171,18 @@ populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --
 I filter it using:
 
 ```
-vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode
+vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode ## remove stuff found in les than 80% of individuals AND the thin is within 100bp of each other
 ```
 
 After filtering, kept 89 out of 89 Individuals
 After filtering, kept 78997 out of a possible 78997 Sites
 Run Time = 1.00 seconds
+
+Can always have a check to se if there are terrible individuals left here:
+
+First I do  quick check for individuals with LOTS AND LOTS of missing data.
+
+```
+vcftools --vcf output_refmap_masked/populations.snps.vcf --missing-indv # or indv-missing
+```
 
