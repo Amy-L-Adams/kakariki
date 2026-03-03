@@ -99,7 +99,7 @@ Yellow_CD1888
 
 The  popmap can be created using the stacks help online and the barcodes file in this repository metadata. 
 
-## SNP filtering
+## Recalling on masked genome to avoid ascertainment bias
 
 I run populations again to obtain a VCF and check for low quality samples.
 
