@@ -13,28 +13,34 @@ zcat kakariki_pool_1_S1_R1_001.fastq.gz | head -n 1000000 > kakariki_pool_1.fast
 ## zcat Kakariki-GBS_S1_R1_001.fastq.gz | head -n 1000000 > Kakariki-GBS_R1.fastq 
 module load FastQC
 fastqc kakariki_pool_1.fastq # Generates a report. Tells you adapter and read lengths.
-## fastqc AAHCWL7M5_R1.fastq # Generates a report. Tells you adapter and read lengths.
-## fastqc GBS_R1.fastq # Generates a report. Tells you adapter and read lengths.
-## fastqc Kakariki-GBS_R1.fastq # Generates a report. Tells you adapter and read lengths.
+## fastqc AAHCWL7M5_R1.fastq
+## fastqc GBS_R1.fastq
+## fastqc Kakariki-GBS_R1.fastq
 ```
 ## Adapter trimming
 
-Trimming off adapters and removing reads shorter than 50bp with cutadapt.
+Trimming off adapters and removing reads shorter than 50bp with cutadapt. Need to complete this for each pair of sequencing runs.
 
 
 ```
 cd source_files
-cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki_pool_1_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R2_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz  #### these are the Illumina universal adapters
-kakariki_pool_1_S1_R2_001.fastq.gz
+module load cutadapt
+cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki_pool_1_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R2_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz kakariki_pool_1_S1_R2_001.fastq.gz  #### these are the Illumina universal adapters. NB that this is only partial sequence which is often fine as cutadapt can detect partial matches and shorter adapter seeds often used.
 cd ..
 ```
 I had a quick check with fastqc and the data look ok and free of adapters now.
+
+```
+module load FastQC
+fastqc trimmed_kakariki_pool_1_S1_R1_001.fastq trimmed_kakariki_pool_1_S1_R2_001.fastq
+
+```
 
 ## Demultiplexing
 
 
 
-Copy trimmed data to raw folder.
+Copy trimmed data to raw_samples folder.
 
 ```
 cd raw_samples
