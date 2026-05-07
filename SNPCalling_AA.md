@@ -1,6 +1,6 @@
 # SNP calling
 
-*From here to alignment, things need to be done in different foldewrs for different runs*
+*From here to alignment, things need to be done in different folders for different runs*
 
 First, I create a folder for the source files and folders to run Stacks, raw (which will contain the trimmed data) and samples.
 
