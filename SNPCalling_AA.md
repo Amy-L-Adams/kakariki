@@ -28,12 +28,12 @@ module load cutadapt
 cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki_pool_1_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R2_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz kakariki_pool_1_S1_R2_001.fastq.gz  #### these are the Illumina universal adapters. NB that this is only partial sequence which is often fine as cutadapt can detect partial matches and shorter adapter seeds often used.
 cd ..
 ```
-I had a quick check with fastqc and the data look ok and free of adapters now.
+I had a quick check with fastqc and the data look ok and free of adapters now:
 
 ```
 module load FastQC
-fastqc trimmed_kakariki_pool_1_S1_R1_001.fastq trimmed_kakariki_pool_1_S1_R2_001.fastq
-
+head -n 1000000 trimmed_kakariki_pool_1_S1_R2_001.fastq > test_trimmed_kakariki_pool2.fastq
+fastqc test_trimmed_kakariki_pool2.fastq
 ```
 
 ## Demultiplexing
