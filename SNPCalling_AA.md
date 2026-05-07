@@ -26,14 +26,24 @@ Trimming off adapters and removing reads shorter than 50bp with cutadapt. Need t
 cd source_files
 module load cutadapt
 cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki_pool_1_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R2_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz kakariki_pool_1_S1_R2_001.fastq.gz  #### these are the Illumina universal adapters. NB that this is only partial sequence which is often fine as cutadapt can detect partial matches and shorter adapter seeds often used.
+
+#cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki-GBS_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_kakariki-GBS_S1_R2_001.fastq Kakariki-GBS_S1_R1_001.fastq.gz Kakariki-GBS_S1_R2_001.fastq.gz
+#cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_GBS_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_GBS_S1_R2_001.fastq GBS_S1_R1_001.fastq.gz GBS_S1_R2_001.fastq.gz
+#cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_AAHCWL7M5-9739-P1-00-01_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_AAHCWL7M5-9739-P1-00-01_S1_R2_001.fastq AAHCWL7M5-9739-P1-00-01_S1_L001_R1_001.fastq.gz AAHCWL7M5-9739-P1-00-01_S1_L001_R2_001.fastq.gz
 cd ..
 ```
 I had a quick check with fastqc and the data look ok and free of adapters now:
 
 ```
 module load FastQC
-head -n 1000000 trimmed_kakariki_pool_1_S1_R2_001.fastq > test_trimmed_kakariki_pool2.fastq
-fastqc test_trimmed_kakariki_pool2.fastq
+head -n 1000000 trimmed_kakariki_pool_1_S1_R1_001.fastq > test_trimmed_kakariki_pool_1.fastq
+#head -n 1000000 trimmed_kakariki-GBS_S1_R1_001.fastq > test_trimmed_kakariki-GBS.fastq
+#head -n 1000000 trimmed_GBS_S1_R1_001.fastq > test_trimmed_GBS.fastq
+#head -n 1000000 trimmed_AAHCWL7M5-9739-P1-00-01_S1_R1_001.fastq > test_trimmed_AAHCWL7M5-9739.fastq
+fastqc test_trimmed_kakariki_pool_1.fastq
+#fastqc test_trimmed_kakariki-GBS.fastq
+#fastqc test_trimmed_GBS.fastq
+#fastqc test_trimmed_AAHCWL7M5-9739.fastq
 ```
 
 ## Demultiplexing
@@ -44,14 +54,14 @@ Copy trimmed data to raw_samples folder.
 
 ```
 cd raw_samples
-ln -s ../source_files/trimmed_ka* .
+ln -s ../source_files/trimmed/trimmed_* .
 cd ..
 ```
 Run demultiplexing
 
 ```
 module load Stacks/2.52-gimkl-2020a
-process_radtags -P   -p raw_samples/ -o ./samples/ -b barcodes.txt -e pstI -r -c  --inline-inline # NO -q often used for process-radtags gives me an error because of it, but no worries, cutadapatalready took care of this
+process_radtags -P   -p raw_samples/ -o ./samples/ -b barcodes.txt -e pstI -r -c  --inline-inline # NO -q often used for process-radtags gives me an error because of it, but no worries, cutadapatalready took care of this.
  ```
  Not that good but ok results:
  
@@ -73,7 +83,7 @@ Yellow_CD1888
 
 # Alignment
 
-*This can now be done on any number of run that have been demultiplexed independently but filtered the same way*
+*This can now be done on any number of runs that have been demultiplexed independently but filtered in the same way*
 
 First we download the genome from:
 
