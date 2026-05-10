@@ -53,15 +53,16 @@ fastqc test_trimmed_kakariki_pool_1.fastq
 Copy trimmed data to raw_samples folder.
 
 ```
-cd raw_samples
-ln -s ../source_files/trimmed/trimmed_* .
+cd raw_samples ## cd raw_samples/run2 ##to seperate the run files to then run demultiplexing on.
+ln -s ../source_files/trimmed/trimmed_* . ## ln -s ../../source_files/trimmed/trimmed_GBS_* . ##for when moving into a sub-directory inside the raw_samples folder
 cd ..
 ```
 Run demultiplexing
 
 ```
 module load Stacks/2.52-gimkl-2020a
-process_radtags -P   -p raw_samples/ -o ./samples/ -b barcodes.txt -e pstI -r -c  --inline-inline # NO -q often used for process-radtags gives me an error because of it, but no worries, cutadapatalready took care of this.
+#process_radtags -P   -p run2/ -o ./samples/ -b barcodes_AA.txt -e pstI -r -c  --inline-inline # NO -q often used for process-radtags gives me an error because of it, but no worries, cutadapatalready took care of this. ##this needs to be run on each run separately so the two .fastq files for each run should be in different folders.
+process_radtags -P   -p run2/ -o ./samples/ -b barcodes_AA.txt -e pstI -r -c  --inline-inline  ##run in my different run sub-folders so each run is run separaetly with the correct barcode file.
  ```
  Not that good but ok results:
  
