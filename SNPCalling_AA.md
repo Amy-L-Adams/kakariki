@@ -82,6 +82,25 @@ Yellow_CD1887
 Yellow_CD1888
 ```
 
+# Merging same samples
+This is to merge matching FASTQ files for the same sample to then be aligned.
+```
+mkdir merged_samples ##put this where want it located in file system
+src1=../samples2
+src2=../samples3
+out=../merged_samples
+
+for sample in $files
+do
+    cat $src1/${sample}.1.fq.gz \
+        $src2/${sample}.1.fq.gz \
+        > $out/${sample}.1.fq.gz
+
+    cat $src1/${sample}.2.fq.gz \
+        $src2/${sample}.2.fq.gz \
+        > $out/${sample}.2.fq.gz
+done
+```
 
 # Alignment
 
