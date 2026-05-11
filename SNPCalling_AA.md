@@ -68,7 +68,7 @@ process_radtags -P   -p ../raw_samples/run1/ -o ../samples1/ -b barcodes_LD.txt 
 #process_radtags -P   -p ../raw_samples/run3/ -o ../samples3/ -b barcodes_AA.txt -e pstI -r -c  --inline-inline
 #process_radtags -P   -p ../raw_samples/run4/ -o ../samples4/ -b barcodes_SS.txt -e pstI -r -c  --inline-inline
 
-##run in my different run sub-folders so each run is run separaetly with the correct barcode file. Created a script (demultiplexing.sl to run this - run from scripts folder. Needed to make "samples" directory first manually before running the script). Runs 1+3 = job time = 3 hours, runs 2+3 = 1 hour
+##run in my different run sub-folders so each run is run separaetly with the correct barcode file. Created a script (demultiplexing.sl to run this - run from scripts folder. Needed to make "samples" directory first manually before running the script).
 
  ```
  Not that good but ok results:
