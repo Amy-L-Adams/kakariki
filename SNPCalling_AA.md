@@ -62,7 +62,8 @@ Run demultiplexing
 ```
 module load Stacks/2.52-gimkl-2020a
 #process_radtags -P   -p run2/ -o ./samples/ -b barcodes_AA.txt -e pstI -r -c  --inline-inline # NO -q often used for process-radtags gives me an error because of it, but no worries, cutadapatalready took care of this. ##this needs to be run on each run separately so the two .fastq files for each run should be in different folders.
-process_radtags -P   -p run2/ -o ./samples/ -b barcodes_AA.txt -e pstI -r -c  --inline-inline  ##run in my different run sub-folders so each run is run separaetly with the correct barcode file.
+process_radtags -P   -p ../raw_samples/run2/ -o ../samples/ -b barcodes_AA.txt -e pstI -r -c  --inline-inline  ##run in my different run sub-folders so each run is run separaetly with the correct barcode file. Created a script (demultiplexing.sl to run this - run from scripts folder. Needed to make "samples" directory first manually before running the script).
+
  ```
  Not that good but ok results:
  
