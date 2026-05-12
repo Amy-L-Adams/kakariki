@@ -80,6 +80,16 @@ Low Quality     5364236 2.2%
 RAD Cutsite Not Found   2094249 0.8%
 Retained Reads  199833431       80.8%
 ```
+Can run code to look for files with no/low reads (either script or run within samples1 folder as code below is doing):
+ ```
+for f in *.1.fq.gz
+do
+    sample=$(basename $f .1.fq.gz)
+    reads=$(zcat $f | wc -l)
+    echo $sample $((reads/4))
+done
+ ```
+
 3 samples have no reads:
 
 ```
