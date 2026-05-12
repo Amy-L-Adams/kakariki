@@ -80,22 +80,26 @@ Low Quality     5364236 2.2%
 RAD Cutsite Not Found   2094249 0.8%
 Retained Reads  199833431       80.8%
 ```
-Can run code to look for files with no/low reads (either script or run within samples1 folder as code below is doing):
+Can run code to look for files with no reads (either script or run within the appropriate samples# folder as code below is doing):
  ```
 for f in *.1.fq.gz
 do
     sample=$(basename $f .1.fq.gz)
     reads=$(zcat $f | wc -l)
-    echo $sample $((reads/4))
+    
+    if [ $reads -eq 0 ]
+    then
+        echo $sample
+    fi
 done
  ```
 
-3 samples have no reads:
+3 samples have no reads for run 1:
 
 ```
-Norfolk_GPE03_R
-Yellow_CD1887
+Norfolk_GPE03_3_R
 Yellow_CD1888
+Yellow_CD1891
 ```
 
 # Merging same samples
@@ -147,8 +151,8 @@ Alignment done with [align.sh](align.sh)
 ```
 Norfolk_GPE031_K.bam
 Norfolk_GPE033_R.bam
-Yellow_CD1887
 Yellow_CD1888
+Yellow_CD1891
 ```
 ```
 #!/bin/sh
