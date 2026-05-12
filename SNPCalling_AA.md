@@ -101,7 +101,29 @@ Norfolk_GPE03_3_R
 Yellow_CD1888
 Yellow_CD1891
 ```
+X samples have no reads for run 2:
 
+```
+...Norfolk_GPE03_3_R
+....Yellow_CD1888
+.....Yellow_CD1891
+```
+
+X samples have no reads for run 3:
+
+```
+...Norfolk_GPE03_3_R
+...Yellow_CD1888
+...Yellow_CD1891
+```
+
+X samples have no reads for run 4:
+
+```
+...Norfolk_GPE03_3_R
+...Yellow_CD1888
+...Yellow_CD1891
+```
 # Merging same samples
 This is to merge matching FASTQ files for the same sample to then be aligned. Need to run on my 2 Australian runs and also between Ludo's and mine as there were 3 samples that were duplicated between plates 1+2
 ```
