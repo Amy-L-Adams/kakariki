@@ -83,7 +83,7 @@ Retained Reads  199833431       80.8%
 3 samples have no reads:
 
 ```
-Norfolk_GPE033_R
+Norfolk_GPE03_R
 Yellow_CD1887
 Yellow_CD1888
 ```
