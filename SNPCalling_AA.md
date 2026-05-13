@@ -74,11 +74,29 @@ process_radtags -P   -p ../raw_samples/run1/ -o ../samples1/ -b barcodes_LD.txt 
  Not that good but ok results:
  
  ```
+Run 1:
 Total Sequences 247360172
 Barcode Not Found       40068256        16.2%
 Low Quality     5364236 2.2%
 RAD Cutsite Not Found   2094249 0.8%
 Retained Reads  199833431       80.8%
+
+Run 2:
+Total Sequences 86369188
+Barcode Not Found       8710318        10.1%
+Low Quality     4561831 5.3%
+RAD Cutsite Not Found   393975 0.5%
+Retained Reads  72703064       84.2%
+
+Run 3:
+Total Sequences 130570160
+Barcode Not Found       12588536        9.6%
+Low Quality     7970 0.0%
+RAD Cutsite Not Found   650055 0.5%
+Retained Reads  117323599       89.9%
+
+Run 4:
+
 ```
 Can run code to look for files with no reads (either script or run within the appropriate samples# folder as code below is doing):
  ```
@@ -101,22 +119,6 @@ Norfolk_GPE03_3_R
 Yellow_CD1888
 Yellow_CD1891
 ```
-X samples have no reads for run 2:
-
-```
-...Norfolk_GPE03_3_R
-....Yellow_CD1888
-.....Yellow_CD1891
-```
-
-X samples have no reads for run 3:
-
-```
-...Norfolk_GPE03_3_R
-...Yellow_CD1888
-...Yellow_CD1891
-```
-
 X samples have no reads for run 4:
 
 ```
