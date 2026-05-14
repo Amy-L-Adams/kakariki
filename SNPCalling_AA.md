@@ -130,7 +130,7 @@ X samples have no reads for run 4:
 This is to merge matching FASTQ files for the same sample to then be aligned. Need to run on my 2 Australian runs and also between Ludo's and mine as there were 3 samples that were duplicated between plates 1+2
 ```
 mkdir merged_samples ##put this where want it located in file system
-src1=../samples2
+src1=../samples2 ##src=source directory
 src2=../samples3
 out=../merged_samples
 
