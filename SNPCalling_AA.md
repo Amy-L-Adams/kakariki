@@ -26,7 +26,6 @@ Trimming off adapters and removing reads shorter than 50bp with cutadapt. Need t
 cd source_files
 module load cutadapt
 cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki_pool_1_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R2_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz kakariki_pool_1_S1_R2_001.fastq.gz  #### these are the Illumina universal adapters. NB that this is only partial sequence which is often fine as cutadapt can detect partial matches and shorter adapter seeds often used.
-
 #cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki-GBS_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_kakariki-GBS_S1_R2_001.fastq Kakariki-GBS_S1_R1_001.fastq.gz Kakariki-GBS_S1_R2_001.fastq.gz
 #cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_GBS_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_GBS_S1_R2_001.fastq GBS_S1_R1_001.fastq.gz GBS_S1_R2_001.fastq.gz
 #cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_AAHCWL7M5-9739-P1-00-01_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_AAHCWL7M5-9739-P1-00-01_S1_R2_001.fastq AAHCWL7M5-9739-P1-00-01_S1_L001_R1_001.fastq.gz AAHCWL7M5-9739-P1-00-01_S1_L001_R2_001.fastq.gz
