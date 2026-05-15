@@ -129,23 +129,44 @@ X samples have no reads for run 4:
 ...Yellow_CD1891
 ```
 # Merging same samples
-This is to merge matching FASTQ files for the same sample to then be aligned. Need to run on my 2 Australian runs and also between Ludo's and mine as there were 3 samples that were duplicated between plates 1+2
+This is to merge matching FASTQ files for the same sample to then be aligned.
 ```
-mkdir merged_samples ##put this where want it located in file system
-src1=../samples2 ##src=source directory
-src2=../samples3
-out=../merged_samples
+set -euo pipefail
 
-for sample in $files
+src1="../samples2"
+src2="../samples3"
+out="../merged_samples"
+
+mkdir -p ../merged_samples
+
+logfile="$out/merge_log.txt"
+echo "Merge started: $(date)" > "$logfile"
+
+# Get sample names automatically from R1 files
+for fq in "$src1"/*.1.fq.gz
 do
-    cat $src1/${sample}.1.fq.gz \
-        $src2/${sample}.1.fq.gz \
-        > $out/${sample}.1.fq.gz
+    sample=$(basename "$fq" .1.fq.gz)
 
-    cat $src1/${sample}.2.fq.gz \
-        $src2/${sample}.2.fq.gz \
-        > $out/${sample}.2.fq.gz
+    r1a="$src1/${sample}.1.fq.gz"
+    r1b="$src2/${sample}.1.fq.gz"
+
+    r2a="$src1/${sample}.2.fq.gz"
+    r2b="$src2/${sample}.2.fq.gz"
+
+    # Check all files exist
+    if [[ -f "$r1a" && -f "$r1b" && -f "$r2a" && -f "$r2b" ]]; then
+
+        echo "Merging $sample" | tee -a "$logfile"
+
+        cat "$r1a" "$r1b" > "$out/${sample}.1.fq.gz"
+        cat "$r2a" "$r2b" > "$out/${sample}.2.fq.gz"
+
+    else
+        echo "WARNING: missing files for $sample" | tee -a "$logfile"
+    fi
 done
+
+echo "Merge finished: $(date)" >> "$logfile"
 ```
 
 # Alignment
