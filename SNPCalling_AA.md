@@ -123,10 +123,9 @@ Yellow_CD1891
 ```
 All samples had reads for runs 2 + 3.
 
-```
-
 # Merging same samples
 This is to merge matching FASTQ files for the same sample to then be aligned.
+
 ```
 set -euo pipefail
 
