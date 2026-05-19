@@ -89,9 +89,16 @@ Run demultiplexing
 module load Stacks/2.52-gimkl-2020a
 ## NO -q often used for process-radtags gives me an error because of it, but no worries, cutadapatalready took care of this.
 ##this needs to be run on each run separately
+#Run1:
 process_radtags -P   -p ../raw_samples/run1/ -o ../samples1/ -b barcodes_LD.txt -e pstI -r -c  --inline-inline
+
+#Run2:
 #process_radtags -P   -p ../raw_samples/run2/ -o ../samples2/ -b barcodes_AA.txt -e pstI -r -c  --inline-inline
+
+#Run3:
 #process_radtags -P   -p ../raw_samples/run3/ -o ../samples3/ -b barcodes_AA.txt -e pstI -r -c  --inline-inline
+
+#Run4:
 #process_radtags -P   -p ../raw_samples/run4/ -o ../samples4/ -b barcodes_SS.txt -e pstI -r -c  --inline-inline
 
  ```
@@ -151,7 +158,7 @@ Yellow_CD1891
 All samples had reads for runs 2 + 3.
 
 ## Merging same samples
-This is to merge matching FASTQ files for the same sample to then be aligned (associated with runs 2+3).
+This is to merge matching FASTQ files for the same sample to then be aligned (associated with Runs 2+3).
 
 ```
 set -euo pipefail
