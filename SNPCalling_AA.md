@@ -1,3 +1,9 @@
+#Kakariki data structure
+Run 1: Ludo, Australia, file prefix = kakariki_pool_1
+Run 2: Amy, Australia, file prefix = GBS
+Run 3: Amy, Australia, file prefeix = Kakariki-GBS
+Run 4 (mixed plate): Shanshan, OG Dunedin, file prefix = AAHCWL7M5-9739-P1-00-01
+
 # SNP calling
 
 *From here to alignment, things need to be done in different folders for different runs*
@@ -7,14 +13,22 @@ First, I create a folder for the source files and folders to run Stacks, raw (wh
 ```
 mkdir source_files raw_samples  ##makes 2 new folders
 cd source_files
+#Run1:
 zcat kakariki_pool_1_S1_R1_001.fastq.gz | head -n 1000000 > kakariki_pool_1.fastq ##creates a fastq file
+#Run2:
 ## zcat AAHCWL7M5-9739-P1-00-01_S1_L001_R1_001.fastq.gz | head -n 1000000 > AAHCWL7M5_R1.fastq
+#Run3:
 ## zcat GBS_S1_R1_001.fastq.gz | head -n 1000000 > GBS_R1.fastq
+#Run4:
 ## zcat Kakariki-GBS_S1_R1_001.fastq.gz | head -n 1000000 > Kakariki-GBS_R1.fastq 
 module load FastQC
+#Run1:
 fastqc kakariki_pool_1.fastq # Generates a report. Tells you adapter and read lengths.
+#Run2:
 ## fastqc AAHCWL7M5_R1.fastq
+#Run3:
 ## fastqc GBS_R1.fastq
+#Run4:
 ## fastqc Kakariki-GBS_R1.fastq
 ```
 ## Adapter trimming
@@ -25,9 +39,13 @@ Trimming off adapters and removing reads shorter than 50bp with cutadapt. Need t
 ```
 cd source_files
 module load cutadapt
+#Run1:
 cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki_pool_1_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_kakariki_pool_1_S1_R2_001.fastq kakariki_pool_1_S1_R1_001.fastq.gz kakariki_pool_1_S1_R2_001.fastq.gz  #### these are the Illumina universal adapters. NB that this is only partial sequence which is often fine as cutadapt can detect partial matches and shorter adapter seeds often used.
+#Run2:
 #cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_kakariki-GBS_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_kakariki-GBS_S1_R2_001.fastq Kakariki-GBS_S1_R1_001.fastq.gz Kakariki-GBS_S1_R2_001.fastq.gz
+#Run3:
 #cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_GBS_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_GBS_S1_R2_001.fastq GBS_S1_R1_001.fastq.gz GBS_S1_R2_001.fastq.gz
+#Run4:
 #cutadapt  -j 8 -a AGATCGGAAGAGC -A AGATCGGAAGAGC  -q 25 -o trimmed_AAHCWL7M5-9739-P1-00-01_S1_R1_001.fastq --minimum-length 50:50   -p  trimmed_AAHCWL7M5-9739-P1-00-01_S1_R2_001.fastq AAHCWL7M5-9739-P1-00-01_S1_L001_R1_001.fastq.gz AAHCWL7M5-9739-P1-00-01_S1_L001_R2_001.fastq.gz
 cd ..
 ```
@@ -35,9 +53,13 @@ I had a quick check with fastqc and the data look ok and free of adapters now:
 
 ```
 module load FastQC
+#Run1:
 head -n 1000000 trimmed_kakariki_pool_1_S1_R1_001.fastq > test_trimmed_kakariki_pool_1.fastq
+#Run2:
 #head -n 1000000 trimmed_kakariki-GBS_S1_R1_001.fastq > test_trimmed_kakariki-GBS.fastq
+#Run3:
 #head -n 1000000 trimmed_GBS_S1_R1_001.fastq > test_trimmed_GBS.fastq
+#Run4:
 #head -n 1000000 trimmed_AAHCWL7M5-9739-P1-00-01_S1_R1_001.fastq > test_trimmed_AAHCWL7M5-9739.fastq
 fastqc test_trimmed_kakariki_pool_1.fastq
 #fastqc test_trimmed_kakariki-GBS.fastq
@@ -123,8 +145,8 @@ Yellow_CD1891
 ```
 All samples had reads for runs 2 + 3.
 
-# Merging same samples
-This is to merge matching FASTQ files for the same sample to then be aligned.
+## Merging same samples
+This is to merge matching FASTQ files for the same sample to then be aligned (associated with runs 2+3).
 
 ```
 set -euo pipefail
