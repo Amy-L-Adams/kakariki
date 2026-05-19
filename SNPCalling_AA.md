@@ -56,16 +56,20 @@ I had a quick check with fastqc and the data look ok and free of adapters now:
 module load FastQC
 #Run1:
 head -n 1000000 trimmed_kakariki_pool_1_S1_R1_001.fastq > test_trimmed_kakariki_pool_1.fastq
+fastqc test_trimmed_kakariki_pool_1.fastq
+
 #Run2:
 #head -n 1000000 trimmed_kakariki-GBS_S1_R1_001.fastq > test_trimmed_kakariki-GBS.fastq
+#fastqc test_trimmed_kakariki-GBS.fastq
+
 #Run3:
 #head -n 1000000 trimmed_GBS_S1_R1_001.fastq > test_trimmed_GBS.fastq
+#fastqc test_trimmed_GBS.fastq
+
 #Run4:
 #head -n 1000000 trimmed_AAHCWL7M5-9739-P1-00-01_S1_R1_001.fastq > test_trimmed_AAHCWL7M5-9739.fastq
-fastqc test_trimmed_kakariki_pool_1.fastq
-#fastqc test_trimmed_kakariki-GBS.fastq
-#fastqc test_trimmed_GBS.fastq
 #fastqc test_trimmed_AAHCWL7M5-9739.fastq
+
 ```
 
 ## Demultiplexing
