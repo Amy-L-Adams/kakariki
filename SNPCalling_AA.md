@@ -5,9 +5,9 @@ Run 1: Ludo, Australia, file prefix = kakariki_pool_1
 
 Run 2: Amy, Australia, file prefix = GBS
 
-Run 3: Amy, Australia, file prefeix = Kakariki-GBS
+Run 3: Amy, Australia, file prefix = Kakariki-GBS
 
-Run 4 (mixed plate): Shanshan, OG Dunedin, file prefix = AAHCWL7M5-9739-P1-00-01
+Run 4 (2 x mixed plates): Shanshan, OG Dunedin, file prefix = AAHCWL7M5-9739-P1-00-01
 
 # SNP calling
 
