@@ -155,7 +155,7 @@ Norfolk_GPE03_3_R
 Yellow_CD1888
 Yellow_CD1891
 ```
-All samples had reads for runs 2 + 3.
+All samples had reads for runs 2, 3 and 4.
 
 ## Merging same samples
 This is to merge matching FASTQ files for the same sample to then be aligned (associated with Runs 2+3).
