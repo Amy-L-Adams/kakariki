@@ -127,13 +127,12 @@ Low Quality     7970 0.0%
 RAD Cutsite Not Found   650055 0.5%
 Retained Reads  117323599       89.9%
 
-Run 4 (mixed run at OG):
-Total Sequences 805388692
-Barcode Not Found       480414496        59.7%
-Low Quality     2237292 0.3%
-RAD Cutsite Not Found   4719614 0.6%
-Retained Reads  318017290       39.5%
-
+Run 4 (mixed run at OG with two plates of data):
+Total Sequences	805388692
+Barcode Not Found	212642444     26.4%
+Low Quality	4090426 0.5%
+RAD Cutsite Not Found	6877748  0.9%
+Retained Reads	581778074  72.2%
 ```
 Can run code to look for files with no reads (either script or run within the appropriate samples# folder as code below is doing):
  ```
