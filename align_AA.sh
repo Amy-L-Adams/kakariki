@@ -1,3 +1,5 @@
+mkdir -p ../alignment
+
 files="
 Chatham_PK23
 Chatham_PK24
@@ -225,15 +227,15 @@ do
 
     for dir in $dirs
     do
-        if [[ -f $dir/${sample}.1.fq.gz && -f $dir/${sample}.2.fq.gz ]]
+        if [[ -f "$dir/${sample}.1.fq.gz" && -f "$dir/${sample}.2.fq.gz" ]]
         then
             echo "Processing $sample from $dir"
 
-            bwa mem -t 8 $bwa_db \
-                $dir/${sample}.1.fq.gz \
-                $dir/${sample}.2.fq.gz | \
+            bwa mem -t 8 "$bwa_db" \
+                "$dir/${sample}.1.fq.gz" \
+                "$dir/${sample}.2.fq.gz" | \
                 samtools view -b | \
-                samtools sort --threads 4 > ../alignment/${sample}.bam
+                samtools sort --threads 4 > "../alignment/${sample}.bam"
 
             found=1
             break
@@ -245,3 +247,5 @@ do
         echo "Sample not found: $sample"
     fi
 done
+
+echo "All samples completed"
