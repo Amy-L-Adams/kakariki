@@ -242,13 +242,17 @@ done
 
 ```
 
-2 norfolk and two yellow samples samples have too few reads for refmap and are discarded, creating a popmap.txt without them:
+Two norfolk, four yellow, one Auckland and one Antipodean samples have too few reads for refmap and are discarded, creating a popmap.txt without them:
 
 ```
+Auckland_AuckRCP_12.bam
+Antipodean_GE_09.bam
 Norfolk_GPE031_K.bam
 Norfolk_GPE033_R.bam
-Yellow_CD1888
-Yellow_CD1891
+Yellow_CD1888.bam
+Yellow_CD1891.bam
+Yellow_FT3325.bam
+Yellow_FT3310.bam
 ```
 ```
 #!/bin/sh
