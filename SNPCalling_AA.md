@@ -225,6 +225,7 @@ bwa index GCA_025629965.1_ASM2562996v1_genomic.fna
 
 
 Ludo: Alignment done with [align.sh](align.sh)
+
 Mine: Alignment done with [align_AA.sh](align_AA.sh)
 
 ### SNP Calling
