@@ -231,6 +231,9 @@ Alignment done with [align.sh](align.sh)
 Check to see if any samples have too few reads by examining the alignment statistics for each BAM file. Run following within the alignment directory:
 
 ```
+module load SAMtools
+module load BWA
+
 for bam in *.bam
 do
     count=$(samtools view -c -F 4 "$bam")
