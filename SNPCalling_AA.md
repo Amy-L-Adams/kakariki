@@ -228,6 +228,17 @@ Alignment done with [align.sh](align.sh)
 
 ### SNP Calling
 
+Check to see if any samples have too few reads by examining the alignment statistics for each BAM file. Run following within the alignment directory:
+
+```
+for bam in *.bam
+do
+    count=$(samtools view -c -F 4 "$bam")
+    echo "$bam $count"
+done
+
+```
+
 2 norfolk and two yellow samples samples have too few reads for refmap and are discarded, creating a popmap.txt without them:
 
 ```
