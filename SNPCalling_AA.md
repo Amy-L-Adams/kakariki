@@ -254,14 +254,16 @@ Yellow_CD1891.bam
 Yellow_FT3325.bam
 Yellow_FT3310.bam
 ```
+## Reference mapping pipeline
+
+The  popmap can be created using the stacks help online (https://catchenlab.life.illinois.edu/stacks/manual/) and the barcode files. Assign the samples from different runs, different population numbers (run 1 = 1, merged runs 2+3 = 2, run 4 = 3).
+
 ```
 #!/bin/sh
  module load Stacks #2.61
- mkdir output_refmap
- ref_map.pl --samples alignment --popmap popmap.txt -T 8  -o output_refmap 
+ mkdir ../output_refmap
+ ref_map.pl --samples ../alignment --popmap ../popmap.txt -T 8  -o ../output_refmap 
 ```
-
-The  popmap can be created using the stacks help online and the barcodes file in this repository metadata. 
 
 ## Recalling on masked genome to avoid ascertainment bias
 
