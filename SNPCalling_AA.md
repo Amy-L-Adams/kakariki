@@ -269,7 +269,7 @@ The  popmap can be created using the stacks help online (https://catchenlab.life
 
 ## Recalling on masked genome to avoid ascertainment bias
 
-I run populations again to obtain a VCF and check for low quality samples.
+I run populations again to obtain a VCF (variant call format) and check for low quality samples.
 
 ```
 populations -P output_refmap/ -M popmap.txt  --vcf --structure --plink --treemix -O output_refmap #no R because we want all possible variants to mask
