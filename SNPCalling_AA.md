@@ -259,7 +259,7 @@ Antipodean_GE_09.bam --> this sample has 93,804 reads. Have kept it in for now.
 ```
 ## Reference mapping pipeline
 
-The  popmap can be created using the stacks help online (https://catchenlab.life.illinois.edu/stacks/manual/) and the barcode files. Assign the samples from different runs, different population numbers (run 1 = 1, merged runs 2+3 = 2, run 4 = 3).
+The  popmap can be created using the stacks help online (https://catchenlab.life.illinois.edu/stacks/manual/) and the barcode files. Assign the samples from different runs, different population numbers (run 1 = batch1, merged runs 2+3 = batch2, run 4 = batch3).
 
 ```
 #!/bin/sh
