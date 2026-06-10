@@ -276,7 +276,14 @@ Run populations to obtain a VCF (variant call format) and check for low quality 
 -R = a locus must be present in X% of individuals across all populations (e.g. 60% below)
 
 ```
-populations -P output_refmap/ -M popmap.txt  -p 3 -r 0.1 -R 0.6 --vcf --structure --plink --treemix -O output_refmap
+module load Stacks #2.61
+
+populations \
+  -P ../output_refmap/ \
+  -M ../popmap.txt \
+  -p 3 -r 0.1 -R 0.6 \
+  --vcf --structure --plink --treemix \
+  -O ../output_refmap/
 ```
 >2.75 mio SNPs remained
 
