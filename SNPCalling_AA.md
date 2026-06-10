@@ -270,10 +270,13 @@ The  popmap can be created using the stacks help online (https://catchenlab.life
 
 ## Recalling on masked genome to avoid ascertainment bias
 
-I run populations again to obtain a VCF (variant call format) and check for low quality samples.
+Run populations to obtain a VCF (variant call format) and check for low quality samples.
+-p = a locus must be present in at least X populations to be retained
+-r = within a population, a locus needs to be present in X% of individuals to be considered present in that population (e.g. 10% below)
+-R = a locus must be present in X% of individuals across all populations (e.g. 60% below)
 
 ```
-populations -P output_refmap/ -M popmap.txt  --vcf --structure --plink --treemix -O output_refmap #no R because we want all possible variants to mask
+populations -P output_refmap/ -M popmap.txt  -p 3 -r 0.1 -R 0.6 --vcf --structure --plink --treemix -O output_refmap
 ```
 >2.75 mio SNPs remained
 
