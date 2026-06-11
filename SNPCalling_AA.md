@@ -271,8 +271,11 @@ The  popmap can be created using the stacks help online (https://catchenlab.life
 ## Recalling on masked genome to avoid ascertainment bias
 
 Run populations to obtain a VCF (variant call format) and check for low quality samples.
+
 -p = a locus must be present in at least X populations to be retained
+
 -r = within a population, a locus needs to be present in X% of individuals to be considered present in that population (e.g. 10% below)
+
 -R = a locus must be present in X% of individuals across all populations (e.g. 60% below)
 
 ```
@@ -297,7 +300,8 @@ cp ../alignment/GCA*.fna . #the end . means copy into current directory
 module load BEDTools
 
 bedtools maskfasta -fi GCA_025629965.1_ASM2562996v1_genomic.fna  -bed ../output_refmap/populations.snps.vcf -fo GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna
-#I used the vcf to check the masked fasta and it does seem to make sense
+#When running the above, BEDTools should replace the bases at SNP positions with N.
+I used the vcf to check the masked fasta and it does seem to make sense
 ```
 
 GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna is masked
@@ -309,7 +313,7 @@ module load BWA
 bwa index GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna
 ```
 
-The alignment is done with [alignment_masked.sh](alignment_masked.sh) (which is just changing reference genome from  
+The alignment is done with [alignment_masked.sh](alignment_masked.sh) (which is just changing the reference genome) 
 
 
 
