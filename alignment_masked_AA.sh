@@ -32,9 +32,6 @@ Orange_FT3315
 Orange_FT3316
 Orange_FT3317
 Antipodean_AGP1_1
-Antipodean_AGP1_2
-Antipodean_AGP1_3
-Antipodean_AGP1_4
 Antipodean_AGP1_5
 Auckland_AuckRCP_2
 Auckland_AuckRCP_4
@@ -56,16 +53,15 @@ NZRed_189357
 NZRed_189389
 NZRed_189394
 NZRed_191215
-Norfolk_GPE10
-Norfolk_GPE031_K
-Norfolk_GPE033_R
-Reischeck_red
+Norfolk_GPE10_1_W
+Norfolk_GPE03_1_K
+Norfolk_GPE03_3_R
 Reischeck_ReRCP_19
 Reischeck_ReRCP_20
 Reischeck_ReRCP_21
 Reischeck_ReRCP_22
 Reischeck_ReRCP_23
-Yellow_ReRCP_24
+Reischeck_ReRCP_24
 Yellow_CD1867
 Yellow_CD1878
 Yellow_CD1882
@@ -79,25 +75,174 @@ Yellow_EgYCP_03
 Yellow_EgYCP_04
 Yellow_EgYCP_06
 Yellow_EgYCP_07
-Horned_EgYCP_08
+Yellow_EgYCP_08
 Horned_ECC83
-Ouvea_ECC94
-NewCaledonian_OUV6888
+Horned_ECC94
+Ouvea_OUV6888
 NewCaledonian_RCP00129
-Mangere_RCP00131
-Chatham_RG-G
+NewCaledonian_RCP00131
+MangereForbes_RG-G
 Chatham_D171586
 Chatham_D171587
 Chatham_D171588
 Chatham_D171526
 Chatham_D171527
 Chatham_D171531
-Chatham_redlabel
+Chatham_D171533
+Chatham_D171596
+Adams_P05
+Adams_P06
+Adams_P07
+Antipodean_AGP1_2
+Antipodean_AGP1_3
+Antipodean_AGP1_4
+Antipodean_AGP2_1
+Antipodean_AGP2_5
+Antipodean_AGP2_8
+Auckland_AuckRCP_9
+Auckland_AuckRCP_11
+Auckland_AuckRCP_12
+Auckland_AuckRCP_13
+Auckland_AuckRCP_14
+Chatham_D171535
+Chatham_D171536
+Chatham_D171593
+Norfolk_23780
+NZRed_89331
+NZRed_189355
+NZRed_189392
+NZRed_189398
+NZRed_191219
+NZRed_191223
+NZRed_191284
+NZRed_191383
+NZRed_191386
+NZRed_191391
+NZRed_193721
+NZRed_193723
+NZRed_193729
+Reischeck_GE_03
+Reischeck_GE_10
+Reischeck_GE_11
+Reischeck_GE_12
+Reischeck_GE_13
+Reischeck_GE_14
+Reischeck_ReRCP14
+Reischeck_ReRCP15
+Reischeck_ReRCP16
+Reischeck_ReRCP17
+Antipodean_GE_06
+Antipodean_GE_07
+Antipodean_GE_08
+Antipodean_GE_09
+Antipodean_GE_15
+MangereForbes_D175013
+MangereForbes_D175103
+MangereForbes_D175104
+MangereForbes_D175114
+MangereForbes_D175135
+MangereForbes_G-BR
+MangereForbes_WO-G
+MangereForbes_WR-G
+Orange_AA-2_34520
+Orange_AW1
+Orange_AW2_D63547
+Kermadec_TA000820
+Kermadec_TA000822
+Kermadec_TA000823
+Kermadec_TA000830
+Kermadec_TA000831
+Kermadec_TA000834
+Kermadec_TA000835
+Kermadec_TA000836
+Kermadec_TA000839
+Kermadec_TA000841
+Kermadec_TA000845
+Kermadec_TA000846
+Kermadec_TA000848
+Kermadec_TA000849
+Kermadec_TA000854
+Kermadec_TA000856
+Kermadec_TA000857
+Kermadec_TA000860
+Kermadec_TA000861
+Kermadec_TA000862
+Kermadec_TA000863
+Yellow_CD1896
+Yellow_EgYCP_05
+Yellow_EgYCP_09
+Yellow_EgYCP_10
+Yellow_EgYCP_12
+Yellow_EgYCP_13
+Yellow_EgYCP_14
+Yellow_EgYCP_16
+Yellow_EgYCP_18
+Yellow_EgYCP_19
+Yellow_EgYCP_20
+Yellow_EgYCP_21
+Yellow_EgYCP_22
+Yellow_EgYCP_23
+Yellow_EgYCP_25
+Yellow_EgYCP_26
+Yellow_FT1029
+Yellow_FT3308
+Antipodean_CD1130
+Antipodean_CD965
+Antipodean_CD966
+Antipodean_CD967
+Norfolk_GPE10_1X_L
+Norfolk_GPE10_3Vred_R
+NZRed_193717
+NZRed_191373
+MangereForbes_BR_G
+MangereForbes_BW_G
+MangereForbes_D171514
+MangereForbes_D172011
+MangereForbes_D175207
+MangereForbes_D175214
+MangereForbes_G_BG
+MangereForbes_174714
+MangereForbes_D175111
+Reischeck_ReRCP18
+Reischeck_CD969
+Yellow_AA_1
+Yellow_EgYCP_27
+Yellow_FT3323
+Yellow_FT3324
+Yellow_FT3325
+Yellow_WG168
+Yellow_EgYCP_17
+Chatham_CD1838
 "
 
-src=../samples/
-bwa_db=GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna
+dirs="../samples1 ../merged_samples ../samples4"
+bwa_db="../alignment_masked_ref/GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna"
+
 for sample in $files
-do 
-    bwa mem -t 8 $bwa_db $src/${sample}.1.fq.gz $src/${sample}.2.fq.gz |   samtools view -b | samtools sort --threads 4 > ${sample}.bam
+do
+    found=0
+
+    for dir in $dirs
+    do
+        if [[ -f "$dir/${sample}.1.fq.gz" && -f "$dir/${sample}.2.fq.gz" ]]
+        then
+            echo "Processing $sample from $dir"
+
+            bwa mem -t 8 "$bwa_db" \
+                "$dir/${sample}.1.fq.gz" \
+                "$dir/${sample}.2.fq.gz" | \
+                samtools view -b | \
+                samtools sort --threads 4 > "../alignment_masked_ref/${sample}.bam"
+
+            found=1
+            break
+        fi
+    done
+
+    if [[ $found -eq 0 ]]
+    then
+        echo "Sample not found: $sample"
+    fi
 done
+
+echo "All samples completed"
