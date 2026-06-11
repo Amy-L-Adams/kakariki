@@ -295,7 +295,7 @@ cd  ../alignment_masked_ref
 cp ../alignment/GCA*.fna . #the end . means copy into current directory
 
 module load BEDTools
-bedtools maskfasta
+
 bedtools maskfasta -fi GCA_025629965.1_ASM2562996v1_genomic.fna  -bed ../output_refmap/populations.snps.vcf -fo GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna
 #I used the vcf to check the masked fasta and it does seem to make sense
 ```
