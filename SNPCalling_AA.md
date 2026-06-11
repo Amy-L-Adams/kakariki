@@ -306,7 +306,9 @@ I used the vcf to check the masked fasta and it does seem to make sense
 
 GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna is masked
 
-redo the aligment on this one:
+redo the aligment on the following:
+
+First re-index the masked genome:
 
 ```
 module load BWA
