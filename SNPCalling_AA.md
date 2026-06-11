@@ -285,19 +285,19 @@ populations \
   --vcf --structure --plink --treemix \
   -O ../output_refmap/
 ```
->2.75 mio SNPs remained
+>2,597,201 SNPs remained
 
 Mask them using bedtools to avoid reference bias before realigning:
 
 ```
-mkdir alignment_masked_ref
-cd  alignment_masked_ref
-cp ../alignment/GCA*.fna .
+mkdir ../alignment_masked_ref
+cd  ../alignment_masked_ref
+cp ../alignment/GCA*.fna . #the end . means copy into current directory
 
 module load BEDTools
 bedtools maskfasta
 bedtools maskfasta -fi GCA_025629965.1_ASM2562996v1_genomic.fna  -bed ../output_refmap/populations.snps.vcf -fo GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna
-#I used the vcf to check the masked fasta and it does seem to make
+#I used the vcf to check the masked fasta and it does seem to make sense
 ```
 
 GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna is masked
