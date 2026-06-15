@@ -346,7 +346,7 @@ One individuals with loads of missing data:
 ```
 Yellow_FT3310   715525  0       708453  0.990116
 ```
-I remove it from the popmap and re-run populations without filters:
+I remove it from the popmap and re-run populations without filters (CHECK IF THIS MEANS WITHOUT/WITH THE -P 3):
 
 ```
 populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/
@@ -356,14 +356,14 @@ populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --
 I filter it using:
 
 ```
-vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode ## remove stuff found in les than 80% of individuals AND the thin is within 100bp of each other
+vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode ## remove stuff found in les than 80% of individuals AND the thing is within 100bp of each other
 ```
 
 After filtering, kept 89 out of 89 Individuals
 After filtering, kept 78997 out of a possible 78997 Sites
 Run Time = 1.00 seconds
 
-Can always have a check to se if there are terrible individuals left here:
+Can always have a check to see if there are terrible individuals left here:
 
 First I do  quick check for individuals with LOTS AND LOTS of missing data.
 
