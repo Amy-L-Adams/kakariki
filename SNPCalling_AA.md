@@ -325,7 +325,7 @@ The alignment is done with [alignment_masked.sh](alignment_masked.sh) (which is 
  ref_map.pl --samples alignment_masked_ref --popmap popmap.txt -T 8  -o output_refmap_masked/ 
 ```
 
-Populations with low filtering
+Populations with low filtering ##CHECK IF WITH/OUT -P 3
 ```
 populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/ -R 0.2 # remove snps with less than 20% individuals having any info
 ```
