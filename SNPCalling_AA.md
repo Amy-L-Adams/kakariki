@@ -333,11 +333,11 @@ populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --
 ## SNP filtering
 
 
-First I do  quick check for individuals with LOTS AND LOTS of missing data.
+First I do  quick check for individuals with LOTS AND LOTS of missing data. [can run in terminal, inthe folder where the .snps.vcf file is located]
 
 ```
 module load VCFtools
-vcftools --vcf output_refmap_masked/populations.snps.vcf --missing-indv # or indv-missing
+vcftools --vcf populations.snps.vcf --missing-indv # or indv-missing
 ```
 
 the output is the file out.imiss
