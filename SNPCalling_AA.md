@@ -336,20 +336,34 @@ populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --
 First I do  quick check for individuals with LOTS AND LOTS of missing data.
 
 ```
+module load VCFtools
 vcftools --vcf output_refmap_masked/populations.snps.vcf --missing-indv # or indv-missing
 ```
 
 the output is the file out.imiss
 
-One individuals with loads of missing data:
+Two individuals with loads of missing data (no -p3):
+
+CHECK WITH LUDO WHAT CONSTITUTES LOADS AND LOADS OF MISSING DATA AND SHOULD BE REMOVED HERE.
 
 ```
-Yellow_FT3310   715525  0       708453  0.990116
-```
-I remove it from the popmap and re-run populations without filters (CHECK IF THIS MEANS WITHOUT/WITH THE -P 3):
+#Yellow_FT3310   715525  0       708453  0.990116 (this was previously discarded in previous SNP calling step)
+
+Results: NO -P 3
+INDV	            N_DATA	 N_GENOTYPES_FILTERED	N_MISS	  F_MISS
+Reischeck_GE_13	 2611906	 0	                  2594776	 0.993442
+Antipodean_GE_09	2611906	 0	                  2467331	 0.944648
+
+-p3
+INDV	            N_DATA	 N_GENOTYPES_FILTERED	N_MISS	  F_MISS
+Reischeck_GE_13	 2611905	 0	                  2594775	 0.993442
+Antipodean_GE_09	2611905	 0	                  2467330	 0.944648
 
 ```
-populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/
+I remove it from the popmap (popmap2.txt) and re-run populations without filters (CHECK IF THIS MEANS WITHOUT/WITH THE -P 3):
+
+```
+populations -P output_refmap_masked/ -M popmap2.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/
 ```
 
 
