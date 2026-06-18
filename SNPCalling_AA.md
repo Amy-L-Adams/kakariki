@@ -325,15 +325,15 @@ The alignment is done with [alignment_masked.sh](alignment_masked.sh) (which is 
  ref_map.pl --samples alignment_masked_ref --popmap popmap.txt -T 8  -o output_refmap_masked/ 
 ```
 
-Populations with low filtering ##CHECK IF WITH/OUT -P 3
+Populations with low filtering (keep in the -p and -r values as want to keep the positions that are covered in all three batches since they might differ in sequencing length). -R will remove SNPs with less than X% individuals having any info
 ```
-populations -P output_refmap_masked/ -M popmap.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/ -R 0.2 # remove snps with less than 20% individuals having any info
+populations -P output_refmap_masked/ -M popmap.txt -p 3 -r 0.1 -R 0.2 --vcf --structure --plink --treemix   -O output_refmap_masked/
 ```
 
 ## SNP filtering
 
 
-First I do  quick check for individuals with LOTS AND LOTS of missing data. [can run in terminal, inthe folder where the .snps.vcf file is located]
+First I do  quick check for individuals with LOTS AND LOTS of missing data. [can run in terminal, in the folder where the .snps.vcf file is located]
 
 ```
 module load VCFtools
@@ -342,35 +342,29 @@ vcftools --vcf populations.snps.vcf --missing-indv # or indv-missing
 
 the output is the file out.imiss
 
-Two individuals with loads of missing data (no -p3):
+Two individuals with loads of missing data (-p 3):
 
 CHECK WITH LUDO WHAT CONSTITUTES LOADS AND LOADS OF MISSING DATA AND SHOULD BE REMOVED HERE.
 
 ```
 #Yellow_FT3310   715525  0       708453  0.990116 (this was previously discarded in previous SNP calling step)
 
-Results: NO -P 3
-INDV	            N_DATA	 N_GENOTYPES_FILTERED	N_MISS	  F_MISS
-Reischeck_GE_13	 2611906	 0	                  2594776	 0.993442
-Antipodean_GE_09	2611906	 0	                  2467331	 0.944648
-
--p3
+-p 3 -R 0.2
 INDV	            N_DATA	 N_GENOTYPES_FILTERED	N_MISS	  F_MISS
 Reischeck_GE_13	 2611905	 0	                  2594775	 0.993442
 Antipodean_GE_09	2611905	 0	                  2467330	 0.944648
 
 ```
-I remove it from the popmap (popmap2.txt) and re-run populations without filters (CHECK IF THIS MEANS WITHOUT/WITH THE -P 3):
+I remove these individuals from the popmap (popmap2.txt) and re-run populations without filters:
 
 ```
-populations -P output_refmap_masked/ -M popmap2.txt  --vcf --structure --plink --treemix   -O output_refmap_masked/
+populations -P output_refmap_masked/ -M popmap2.txt -p 3 --vcf --structure --plink --treemix   -O output_refmap_masked/
 ```
-
 
 I filter it using:
 
 ```
-vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode ## remove stuff found in les than 80% of individuals AND the thing is within 100bp of each other
+vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode ## remove stuff found in les than 80% of individuals AND the thin is within 100bp of each other
 ```
 
 After filtering, kept 89 out of 89 Individuals
@@ -385,7 +379,7 @@ First I do  quick check for individuals with LOTS AND LOTS of missing data.
 vcftools --vcf output_refmap_masked/populations.snps.vcf --missing-indv # or indv-missing
 ```
 
-Here I usually rename the file something usefile because it is now out.recode.vcf
+Here I usually rename the file something useful because it is now out.recode.vcf
 
 ```
 mv out.recode.vcf kakarikiXXXindvXXXXSNPsxxxmaxmiss.vcf
