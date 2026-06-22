@@ -347,12 +347,10 @@ Two individuals with loads of missing data >90%
 (Ludo said taht 70-80% missing data is not too bad especially for doing phylogenetics.
 
 ```
-#Yellow_FT3310   715525  0       708453  0.990116 (this was previously discarded in previous SNP calling step)
-
--p 3 -R 0.2
+-p 3 -r 0.1 (batches2)
 INDV	            N_DATA	 N_GENOTYPES_FILTERED	N_MISS	  F_MISS
-Reischeck_GE_13	 2611905	 0	                  2594775	 0.993442
-Antipodean_GE_09	2611905	 0	                  2467330	 0.944648
+Reischeck_GE_13	 2611905	 0	                  2038149  0.993675
+Antipodean_GE_09	2611905	 0	                  1936895	 0.94431
 
 ```
 I remove these individuals from the popmap (popmap2.txt) and re-run populations (populations starts with all the SNPs so you need to include the -p and -r filter to ensure the SNPs and their positions are covered in every single batch. Good idea t keep -R as well which is the missing data over the whole dataset. If doing any other analyses other than phylogenetics, -R needs to be set much higher as they often impute missing data. There is a bit of trial and error with the filtering --> run it and see if get a sensible tree. Repeat if needed):
