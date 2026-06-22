@@ -359,15 +359,16 @@ I remove these individuals from the popmap (popmap2.txt) and re-run populations 
 populations -P output_refmap_masked/ -M popmap2.txt -p 3 -r 0.1 -R 0.2 --vcf --structure --plink --treemix   -O output_refmap_masked/
 ```
 
-I filter it using:
+I filter it using (run in terminal in correct directory where the populations.snps.vcf file is:
 
 ```
-vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode ## remove stuff found in less than 80% of individuals AND the thin is within 100bp of each other
+module load VCFtools
+vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode ## remove stuff found in less than 80% of individuals AND the SNP is within 100bp of each other
 ```
 
-After filtering, kept 89 out of 89 Individuals
-After filtering, kept 78997 out of a possible 78997 Sites
-Run Time = 1.00 seconds
+After filtering, kept X out of X Individuals
+After filtering, kept X out of a possible X Sites
+Run Time = 35.00 seconds
 
 Can always have a check to see if there are terrible individuals left here:
 
