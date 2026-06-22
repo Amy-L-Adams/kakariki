@@ -301,12 +301,12 @@ module load BEDTools
 
 bedtools maskfasta -fi GCA_025629965.1_ASM2562996v1_genomic.fna  -bed ../output_refmap/populations.snps.vcf -fo GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna
 #When running the above, BEDTools should replace the bases at SNP positions with N.
-I used the vcf to check the masked fasta and it does seem to make sense
+I used the vcf to check the masked fasta and it does seem to make sense (see word document for notes about viewing this file)
 ```
 
 GCA_025629965.1_ASM2562996v1_genomic_maskedbysnps.fna is masked
 
-redo the aligment on the following:
+redo the aligment on the following - 
 
 First re-index the masked genome:
 
@@ -342,9 +342,9 @@ vcftools --vcf populations.snps.vcf --missing-indv # or indv-missing
 
 the output is the file out.imiss
 
-Two individuals with loads of missing data (-p 3):
+Two individuals with loads of missing data >90%
 
-CHECK WITH LUDO WHAT CONSTITUTES LOADS AND LOADS OF MISSING DATA AND SHOULD BE REMOVED HERE.
+(Ludo said taht 70-80% missing data is not too bad especially for doing phylogenetics.
 
 ```
 #Yellow_FT3310   715525  0       708453  0.990116 (this was previously discarded in previous SNP calling step)
@@ -355,7 +355,7 @@ Reischeck_GE_13	 2611905	 0	                  2594775	 0.993442
 Antipodean_GE_09	2611905	 0	                  2467330	 0.944648
 
 ```
-I remove these individuals from the popmap (popmap2.txt) and re-run populations without filters:
+I remove these individuals from the popmap (popmap2.txt) and re-run populations (populations starts with all the SNPs so you need to include the -p and -r filter to ensure the SNPs and their positions are covered in every single batch. Good idea t keep -R as well which is the missing data over the whole dataset. If doing any other analyses other than phylogenetics, -R needs to be set much higher as they often impute missing data. There is a bit of trial and error with the filtering --> run it and see if get a sensible tree. Repeat if needed):
 
 ```
 populations -P output_refmap_masked/ -M popmap2.txt -p 3 --vcf --structure --plink --treemix   -O output_refmap_masked/
@@ -364,7 +364,7 @@ populations -P output_refmap_masked/ -M popmap2.txt -p 3 --vcf --structure --pli
 I filter it using:
 
 ```
-vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode ## remove stuff found in les than 80% of individuals AND the thin is within 100bp of each other
+vcftools --vcf populations.snps.vcf --max-missing 0.8 --thin 100 --recode ## remove stuff found in less than 80% of individuals AND the thin is within 100bp of each other
 ```
 
 After filtering, kept 89 out of 89 Individuals
