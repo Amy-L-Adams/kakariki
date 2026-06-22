@@ -356,7 +356,7 @@ Antipodean_GE_09	2611905	 0	                  1936895	 0.94431
 I remove these individuals from the popmap (popmap2.txt) and re-run populations (populations starts with all the SNPs so you need to include the -p and -r filter to ensure the SNPs and their positions are covered in every single batch. Good idea t keep -R as well which is the missing data over the whole dataset. If doing any other analyses other than phylogenetics, -R needs to be set much higher as they often impute missing data. There is a bit of trial and error with the filtering --> run it and see if get a sensible tree. Repeat if needed):
 
 ```
-populations -P output_refmap_masked/ -M popmap2.txt -p 3 --vcf --structure --plink --treemix   -O output_refmap_masked/
+populations -P output_refmap_masked/ -M popmap2.txt -p 3 -r 0.1 -R 0.2 --vcf --structure --plink --treemix   -O output_refmap_masked/
 ```
 
 I filter it using:
