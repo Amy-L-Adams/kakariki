@@ -240,7 +240,9 @@ for bam in *.bam
 do
     count=$(samtools view -c -F 4 "$bam")
     echo "$bam $count"
-done
+done | tee read_counts.txt #prints results to terminal screen and saves it to text file.
+
+cat read_counts.txt #views text output
 
 ```
 
