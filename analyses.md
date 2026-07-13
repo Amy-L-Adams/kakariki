@@ -3,7 +3,8 @@
 Create a list of SNPs from within the GBS dataset
 
 ```
-grep -v “#” yourvcf.vcf | cut -f 1,2 > snp.lst
+grep -v "#" kakariki205indv183780SNPsr01R02.vcf | cut -f 1,2 > snp.lst  #change per vcf filtered file
+wc -l snp.lst #checks number of SNPs in the file output
 
 ```
 Extract these SNPs from the genomic (museum) data using XXXX:
