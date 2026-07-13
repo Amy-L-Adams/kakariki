@@ -1,12 +1,12 @@
-# Kakariki data structure
+# SNP list
 
-Run 1: Ludo, Australia, file prefix = kakariki_pool_1
+Create a list of SNPs from within the GBS dataset
 
-Run 2: Amy, Australia, file prefix = GBS (same samples as run 3)
+```
+grep -v “#” yourvcf.vcf | cut -f 1,2 > snp.lst
 
-Run 3: Amy, Australia, file prefix = Kakariki-GBS (same samples as run 2)
-
-Run 4 (2 x mixed plates): Shanshan, OG Dunedin, file prefix = AAHCWL7M5-9739-P1-00-01
+```
+Extract these SNPs from the genomic (museum) data using XXXX:
 
 # SNP calling
 
